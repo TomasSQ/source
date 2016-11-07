@@ -7,7 +7,7 @@ public class Lanche {
 
     private List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
     
-    private  double s = 0.0; 
+    private double preco = 0.0; 
     private int nroCarne = 0, nroBacon = 0;
 
     public Lanche() {
@@ -19,21 +19,21 @@ public class Lanche {
 
     public double preco() {
         for (Ingrediente ingrediente : this.ingredientes) {
-            s += ingrediente.preco();
-            if (ingrediente == Ingrediente.HamburguerCarne) {
+            preco += ingrediente.preco();
+            if (ingrediente.equals(Ingrediente.HamburguerCarne)) {
                 nroCarne++;
-            } else if (ingrediente == Ingrediente.Bacon) {
+            } else if (ingrediente.equals(Ingrediente.Bacon)) {
                 nroBacon++;
             }
         }
         
 		while (nroCarne >= 2 && nroBacon > 0) {
-			s = s - Ingrediente.Bacon.preco();
+			preco = preco - Ingrediente.Bacon.preco();
 			nroCarne -= 2;
 			nroBacon--;
 		}
 
-        return s;
+        return preco;
     }
 
 	public void add(Ingrediente ingrediente) {
